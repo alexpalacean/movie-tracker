@@ -9,6 +9,10 @@ import {
   HStack,
   Heading,
   IconButton,
+  Flex,
+  Square,
+  Divider,
+  Button
 } from '@chakra-ui/react';
 import { ChevronLeftIcon, AddIcon, CheckIcon } from '@chakra-ui/icons';
 import { useParams, useHistory } from 'react-router-dom';
@@ -16,6 +20,7 @@ import useMovie from '../hooks/useMovie';
 import { buildImageUrl, imageFallback } from '../connectors/tmdb';
 import { getYear, STATUS } from '../utils';
 import WatchlistButton from '../components/WatchlistButton';
+import HistoryButton from '../components/HistoryButton';
 
 export default function Movie() {
   const { movieId } = useParams();
@@ -23,7 +28,7 @@ export default function Movie() {
   const [isHistoryActive, setHistoryActive] = React.useState(false); // temp state, for UI only, should be removed when implemented properly
 
   const { movie, status, error, updateStatus, updateMovie } = useMovie(movieId);
-
+  console.log(movie)
   if (status === STATUS.IDLE) {
     return null;
   }
@@ -55,37 +60,53 @@ export default function Movie() {
           colorScheme="teal"
           onClick={history.goBack}
         />
+          <Text letterSpacing={2} as="span" color="gray.100" opacity={0.5}>{movie.tagline} </Text>
         <HStack>
           <WatchlistButton movie={movie} status={updateStatus} update={updateMovie} />
-          <IconButton
-            aria-label={isHistoryActive ? 'Remove from history' : 'Mark as watched'}
-            icon={isHistoryActive ? <CheckIcon /> : <AddIcon />}
-            colorScheme="teal"
-            variant={isHistoryActive ? 'solid' : 'outline'}
-            onClick={() => setHistoryActive(a => !a)}
-          />
+          <HistoryButton movie={movie} status={updateStatus} update={updateMovie} ></HistoryButton>
         </HStack>
       </HStack>
-      <HStack spacing={3} align="flex-start">
-        <Box>
-          <Image
+     <Container maxW="60em" >
+     <HStack maxW="50em" >
+      </HStack>
+       <Flex justify="space-between">
+       <Flex alignItems="center">
+         <Box transform="rotate(-90deg)" >
+         <Text fontSize="4xl" as="span" opacity={0.5}>{getYear(movie.release_date)}</Text>
+         </Box>
+        </Flex>
+       <Box>
+       <Image
             src={buildImageUrl(movie.poster_path, 'w300')}
             alt="Poster"
             w="35vw"
             maxW={300}
             fallbackSrc={imageFallback}
           />
-        </Box>
-        <Box w="100%">
-          <HStack justify="space-between">
-            <Heading as="h2">{movie.title}</Heading>
-            <Text as="span" color="GrayText">
-              {getYear(movie.release_date)}
-            </Text>
+       </Box>
+        <Box ml={5}>
+          <Heading as="h1" size="2xl">{movie.title}</Heading>
+        <Box>
+          <HStack justify="center">
+          <Text  as="span" color="gray.800">
+                {movie.tagline}
+          </Text>
           </HStack>
-          <Text>{movie.overview}</Text>
+          <Text textAlign="center" color="gray.200">Runtime: {movie.runtime} minutes</Text>
+        <Divider mt={1} orientation="horizontal" />
+          <Flex mt={2} justify="center">
+            {movie.genres.map(({id, name})=>(
+              <Text pl={5} color="GrayText" key={id}>{name}</Text>
+            ))}
+          </Flex>
+        <Divider mt={2} orientation="horizontal" />
+        <Text color="cyan.100">Vote average: {movie.vote_average}</Text>
+        <Text mt={2} color="gray.200">{movie.overview}</Text>
+           
         </Box>
-      </HStack>
+        </Box>
+        </Flex>
+     </Container>
     </Container>
   );
 }

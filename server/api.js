@@ -15,13 +15,15 @@ router.get('/movies/:movieId', async (req, res) => {
   const { movieId } = req.params;
   const movie = await db.movies.findOne({ movieId });
 
+  const history = await db.history.findOne({movieId});
+
   await sleep(); // force increase latency, simulates real life experience. Delete this on prod
   if (!movie) {
     res.sendStatus(404);
   } else {
-    res.send(movie);
+    res.send(movie)
   }
-});
+})
 
 router.put('/movies/:movieId', async (req, res) => {
   const { movieId } = req.params;
@@ -32,15 +34,21 @@ router.put('/movies/:movieId', async (req, res) => {
     { $set: movieData },
     { returnOriginal: false, upsert: true },
   );
+  const history = await db.history.findOneAndUpdate(
+    { movieId },
+    { $set: movieData },
+    { returnOriginal: false, upsert: true },
+  );
 
   await sleep();
   res.send(movie.value);
+  res.send(history.value)
 });
 
 router.get('/watchlist', async (req, res) => {
   const movies = await db.movies
     .find({ watchlist: 'listed' })
-    .sort(['release_date', -1])
+    .sort(['time', -1])
     .limit(100)
     .toArray();
 
@@ -48,4 +56,14 @@ router.get('/watchlist', async (req, res) => {
   res.send(movies);
 });
 
+router.get('/history', async (req, res) => {
+  const history = await db.history
+    .find({ history: 'listed' })
+    .sort(['time', -1])
+    .limit(100)
+    .toArray();
+
+  await sleep();
+  res.send(history);
+});
 module.exports = router;

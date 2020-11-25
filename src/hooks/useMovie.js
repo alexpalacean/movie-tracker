@@ -40,7 +40,7 @@ export default function useMovie(movieId) {
       });
   }, [movieId]);
 
-  // define am update method
+  // define an update method
   const [updateStatus, setUpdateStatus] = React.useState(STATUS.IDLE);
   const updateMovie = React.useCallback(
     body => {

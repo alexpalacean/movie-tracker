@@ -15,7 +15,7 @@ export default function Header() {
   const handleToggle = () => setShow(s => !s);
 
   return (
-    <Box bg="teal.500">
+    <Box bg="cyan.400">
       <Container p={0} maxW="80em">
         <Flex
           as="nav"
@@ -43,13 +43,14 @@ export default function Header() {
             alignItems="center"
             flexGrow={1}
           >
-            <MenuItem to="/search">Search</MenuItem>
-            <MenuItem to="/watchlist">Watchlist</MenuItem>
-            <MenuItem to="/history">History</MenuItem>
+        
+            <MenuItem to="/search"> <Button bg="transparent"  m={1} >Search</Button></MenuItem>
+            <MenuItem to="/watchlist"><Button bg="transparent"  m={1} >Watchlist</Button></MenuItem>
+            <MenuItem to="/history"> <Button bg="transparent"  m={1} >History</Button></MenuItem>
           </Box>
 
           <Box display={{ base: show ? 'block' : 'none', sm: 'block' }} mt={{ base: 4, sm: 0 }}>
-            <Button as={RouterLink} to="/recommendations" bg="transparent" border="1px">
+            <Button as={RouterLink} to="/recommendations"  border="1px">
               What to watch
             </Button>
           </Box>

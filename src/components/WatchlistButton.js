@@ -9,6 +9,7 @@ export default function WatchlistButton({ movie, status, update }) {
     update({
       ...movie,
       watchlist: movie.watchlist === WATCHLIST.LISTED ? WATCHLIST.REMOVED : WATCHLIST.LISTED,
+      time: new Date().toLocaleTimeString()
     });
   };
 

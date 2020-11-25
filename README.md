@@ -134,17 +134,17 @@ Acum să trecem la muncă. Am pregătit o listă cu sarcini, pentru fiecare sarc
 un punct. Cu 5 puncte primești badge, cu 10 deja ai punctaj maxim. cu 10+ vei fi lăudat de mentor,
 mândru de realizarea ta.
 
-1. Deschide `README.md` în VS Code. O să verzi sursa textului în format Markdown. E chiar simpatic,
+1. ~~Deschide `README.md` în VS Code. O să verzi sursa textului în format Markdown. E chiar simpatic,
    dar dacă vrei să-l vezi ca și pe GitHub, apasă `Preview` din bara de sus. Acum, după ce ai
-   completat un task, ~~✂️ îl tai de aici~~. Incepe cu acesta.
+   completat un task, ✂️ îl tai de aici. Incepe cu acesta.~~
 
-   Apoi modifică datele de conectare (user, pass, url) la MongoDB în `server/db.js -> CONFIG`. E
-   important ca să evităm conflictele. Cel puțin, folosește o bază de date diferită.
+   ~~Apoi modifică datele de conectare (user, pass, url) la MongoDB în `server/db.js -> CONFIG`. E
+   important ca să evităm conflictele. Cel puțin, folosește o bază de date diferită.~~
 
-2. Completează pagina Search cu mai multe informații (popularitatea, ratingul, posterul, orice
-   altceva ți se pare interesant). Adaptează design-ul.
-3. Completeaza pagina unui film cu mai multe informații (backdrop, genres, link to imdb, durata,
-   profit, rating, orice altceva ți se pare interesant). Adaptează design-ul.
+2.  ~~Completează pagina Search cu mai multe informații (popularitatea, ratingul, posterul, orice
+   altceva ți se pare interesant). Adaptează design-ul.~~
+3. ~~Completeaza pagina unui film cu mai multe informații (backdrop, genres, link to imdb, durata,
+   profit, rating, orice altceva ți se pare interesant). Adaptează design-ul.~~
 4. Pe pagina unui film există 2 acțiuni - adaugă la favorite și adaugă în istoric. Primul este deja
    implementat. Sarcina este să-l implementezi și pe-al doilea - adaugă în istoric, care la click,
    face un request către server, care va salva starea nouă în BD.
@@ -153,9 +153,9 @@ mândru de realizarea ta.
    schimba data. Oare putem privi un film care încă nu a fost lansat?
 6. Afișează istoricul în pagina corespunzătoare. Poți să te inspiri de la pagina de favorite, dar să
    modifici design-ul. Iar pentru sortare, ne vom folosi de data când a fost privit.
-7. Implementează funcția de recomandări filme - afișează 3 filme random din lista de favorite. O să
+7. ~~Implementează funcția de recomandări filme - afișează 3 filme random din lista de favorite. O să
    ai nevoie de un buton de actualizare listă, în caz că utilizatorului nu-i plac recomandările. Nu
-   afișa filmele favorite deja privite. Lasă utilizatorul să poată șterge un film din favorite
+   afișa filmele favorite deja privite.~~ Lasă utilizatorul să poată șterge un film din favorite
    direct din această pagină.
 8. Completează căutarea cu seriale folosind API-ul de
    [search-tv-shows](https://developers.themoviedb.org/3/search/search-tv-shows). Ești liber să
@@ -167,11 +167,11 @@ mândru de realizarea ta.
    componente, sunt ca funcțiile, doar că pentru UI. Dacă nu știi cum să afișezi informațiile, eu aș
    împărți pagina în 2: în dreapta afișez recomandarea cu ce să privești, iar în stânga, una sub
    alta: search, watchlist, history. Provocarea e să arate bine.
-10. Salvează și sortează după momentul când filmul a fost adăugat la favorite.
+10. ~~Salvează și sortează după momentul când filmul a fost adăugat la favorite.~~
 11. Adaugă un filtru după categorii pentru Recomandări. Vezi că există un API cu toate categoriile
     existente.
-12. Oferă aplicației o altă interfață. E o oportunitate bună să experimentezi, lasă designerul din
-    tine liber să-și facă de cap.
+12. ~~Oferă aplicației o altă interfață. E o oportunitate bună să experimentezi, lasă designerul din
+    tine liber să-și facă de cap.~~
 13. Îmbunătățește algoritmul de recomandări cu ceva mai inteligent.
 
 ## După ce ai terminat sarcinile,

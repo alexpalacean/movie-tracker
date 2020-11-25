@@ -2,9 +2,9 @@ const MongoClient = require('mongodb').MongoClient;
 
 // Bad practice: don't keep sensitive data in git
 const CONFIG = {
-  USER: 'vic',
-  PASS: 'G7h6k296kZfwrnQf',
-  URL: 'cms-cluster0.y1gul.mongodb.net',
+  USER: 'alex',
+  PASS: 'digitalnation',
+  URL: 'cluster0.qijkf.mongodb.net/<dbname>?retryWrites=true&w=majority',
   DB: 'app',
 };
 
@@ -20,5 +20,7 @@ client
   .catch(error => console.error('Error on connecting to MongoDB server', error))
   .then(() => {
     const movies = client.db(CONFIG.DB).collection('movies');
+    const history = client.db(CONFIG.DB).collection('history');
+    module.exports.history = history;
     module.exports.movies = movies;
   });

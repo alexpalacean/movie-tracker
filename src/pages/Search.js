@@ -10,6 +10,9 @@ import {
   Link,
   Progress,
   Text,
+  Button,
+  ButtonGroup,
+  Tooltip
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import useFetchEffect from '../hooks/useFetchEffect';
@@ -32,7 +35,7 @@ export default function Search() {
   const { status, data, error } = useFetchEffect(buildSearchMovieUrl(terms), !!terms);
 
   return (
-    <Container p={3}>
+    <Container maxW="50em" p={3}>
       <Box as="form" onSubmit={handleSearch} w="100%" d="flex" mb={3}>
         <Input placeholder="Search for a movie..." defaultValue={terms} ref={searchRef} mr={3} />
         <IconButton
@@ -50,20 +53,19 @@ export default function Search() {
         </Text>
       )}
       {status === STATUS.RESOLVED && (
-        <UnorderedList>
-          {data.results.map(({ id, title, release_date }) => (
-            <ListItem key={id}>
-              <Link as={RouterLink} to={`/movies/${id}`}>
-                <Text as="span">{title} </Text>
-                <Text as="span" color="GrayText">
-                  {getYear(release_date)}
-                </Text>
-              </Link>
-            </ListItem>
-          ))}
-        </UnorderedList>
+        <Box>
+          {data.results.map(({id, title,
+           name, release_date, popularity, vote_average}) => (
+            <Tooltip hasArrow label={"Rating: " + vote_average + "/" + "Year: " + getYear(release_date)} aria-label="A tooltip"> 
+            <ButtonGroup  p={1} variant="outline" spacing="6" key={id}>
+              <Button key={id} as={RouterLink} to={`/movies/${id}`}>
+                {title || name}
+              </Button>  
+            </ButtonGroup>
+            </Tooltip>
+          ))}   
+        </Box>
       )}
-      {/* @todo: Display a message when no results */}
     </Container>
   );
 }
